@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:scores/model_view/login_controller.dart';
 
 import '../../model_view/auth_viewmodel.dart';
 
@@ -27,6 +28,10 @@ class CustomButton3 extends GetWidget<AuthViewModel>{
 
       onPressed: (){
         print("Create new Account");
+        controller.registerWithEmail();
+
+
+
       },
 
       child: Row(

@@ -3,10 +3,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:mongo_dart/mongo_dart.dart';
+import 'package:scores/model_view/login_controller.dart';
+
+import 'package:http/http.dart' as http;
+import 'package:scores/models/patient/login_model.dart';
+import 'dart:convert';
 
 import '../../model_view/auth_viewmodel.dart';
+import '../../models/patient/register_model.dart';
+
 
 class CustomButton extends GetWidget<AuthViewModel>{
+
+
   final String text;
   final FontWeight fw;
   final Color color;
@@ -21,12 +31,16 @@ class CustomButton extends GetWidget<AuthViewModel>{
 
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
-    return Center(child: ElevatedButton(
+    return Container(child: ElevatedButton(
 
 
-      onPressed: (){
-        print("signin");
+      onPressed: ()async {
+
+        print(controller.email);
+        print(controller.password);
+        controller.loginWithEmail();
 
       },
 

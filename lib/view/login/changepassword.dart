@@ -2,7 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:scores/view/login/Custombuttonpass.dart';
+import 'package:scores/view/login/custom_text_from_field_changepassword.dart';
 import 'package:scores/view/login/custombutton1.dart';
 
 import '../../model_view/auth_viewmodel.dart';
@@ -14,7 +16,7 @@ import 'custombutton2.dart';
 import 'custombutton3.dart';
 
 
-class LoginScreen extends GetWidget<AuthViewModel>
+class ChangePassword extends GetWidget<AuthViewModel>
 {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
@@ -60,11 +62,18 @@ class LoginScreen extends GetWidget<AuthViewModel>
                     SizedBox(
                       height: 10,
                     ),
-                    CustomTextFromFieldpassword(onvalidate:(text){
+                    CustomTextFromFieldpassword(onvalidate: (text){
+                      if (text == '' ) {return 'ERROR => Vide';}
+                    },
+                      text:"NewPassWord", hint:"********" ,),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    CustomTextFromFieldChangepassword(onvalidate:(text){
                       if ((text != '' ) && (text == controller.password))
                       {controller.valid=true;}
                     },
-                      text:"PassWord", hint:"********" ,),
+                      text:"ConfirmPassWord", hint:"********" ,),
                     SizedBox(
                       height: 10,
                     ),
@@ -72,27 +81,18 @@ class LoginScreen extends GetWidget<AuthViewModel>
                     SizedBox(
                       height: 20,
                     ),
-                    CustomButton(
-                      text:'SIGN IN', fw:FontWeight.w800, color:Colors.red.shade600,left: 80,right: 30,pic: "lib/Images/0.png",
-                    ),
-                    SizedBox(height: 20,),
-                    CostumText(text: '-OR-',alignment: Alignment.center,fontSize:25,color: Colors.grey.shade800, fontw:FontWeight.w500, ),
-                    SizedBox(height: 20,),
                     CustomButtonPass(onPressed: ()async {
 
-                        controller.forgotpassword();
+                      print(controller.email);
+                      print(controller.password);
+                      print(controller.valid);
+                      if (controller.valid==true){
+                      controller.loginWithEmail();}
 
                     },
-                      text:'Forgot Password', fw:FontWeight.w800,textcolor: Colors.black,left: 30,right: 30,color: Colors.green.shade200,pic: "lib/Images/0.png",
+                      text:'SIGN IN', fw:FontWeight.w800, color:Colors.red.shade600,left: 80,right: 30,pic: "lib/Images/0.png",
                     ),
-                    SizedBox(height: 20,),
-                    CustomButton2(
-                      text:'Sign In With Facebook', fw:FontWeight.w800,textcolor: Colors.black,left: 30,right: 30,color: Colors.grey.shade200,between: 60,pic: "lib/Images/2.png",
-                    ),
-                    SizedBox(height: 20,),
-                    CustomButton3(
-                      text:'Create New Account', fw:FontWeight.w800,textcolor: Colors.white,left: 30,right: 30,color: Colors.blue.shade900,between: 60,pic: "lib/Images/0.png",
-                    ),
+
 
 
 

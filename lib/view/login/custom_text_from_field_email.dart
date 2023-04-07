@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
+import 'package:scores/models/patient/login_model.dart';
 
 import '../../model_view/auth_viewmodel.dart';
+import '../../model_view/login_controller.dart';
 import 'custom_text.dart';
 
 class CustomTextFromFieldemail extends GetWidget<AuthViewModel>{
@@ -33,11 +35,18 @@ class CustomTextFromFieldemail extends GetWidget<AuthViewModel>{
                 if (formdata!.validate()){
                   formdata.save();
 
+
+
+
                 }else  print('Error => Vide');
 
               },
               onChanged: (text){
                 print("$text");
+                controller.email=_mycontroller.text;
+
+
+
 
               },
               validator: (text){
