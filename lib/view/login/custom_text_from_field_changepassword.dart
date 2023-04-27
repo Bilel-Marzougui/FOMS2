@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mongo_dart/mongo_dart.dart';
 
 import '../../model_view/auth_viewmodel.dart';
 import '../../model_view/login_controller.dart';
 import 'custom_text.dart';
+import 'custom_text_from_field_password.dart';
 
-class CustomTextFromFieldpassword extends GetWidget<AuthViewModel>{
-   final String text;
-   final String hint;
-   final FormFieldValidator onvalidate;
+class CustomTextFromFieldChangepassword extends GetWidget<AuthViewModel>{
+  final String text;
+  final String hint;
+  final FormFieldValidator onvalidate;
+
   TextEditingController _mycontroller = new TextEditingController();
   GlobalKey<FormState> formstate = new GlobalKey<FormState>();
 
@@ -18,9 +21,11 @@ class CustomTextFromFieldpassword extends GetWidget<AuthViewModel>{
 
 
 
-  CustomTextFromFieldpassword( {required this.onvalidate,
+  CustomTextFromFieldChangepassword( {required this.onvalidate,
     this.text = '',
     this.hint = '',
+
+
 
   });
 
@@ -46,7 +51,6 @@ class CustomTextFromFieldpassword extends GetWidget<AuthViewModel>{
               },
               onChanged: (text){
                 print("$text");
-                controller.password= _mycontroller.text ;
 
               },
               validator: onvalidate,
